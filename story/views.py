@@ -19,5 +19,5 @@ def getStory(request: WSGIRequest):
         print(request.GET)
         storyId = request.GET.get('id', None)
         if storyId is not None:
-            queryset = Story.objects.all().filter(sold=False, storyId=storyId[0])
+            queryset = Story.objects.all().filter(sold=False, storyId="".join(storyId))
         return JsonResponse(serializers.serialize('json', queryset), safe=False)
