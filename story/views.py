@@ -15,8 +15,7 @@ from rest_framework import filters
     
 def getStory(request: WSGIRequest):
     if request.method == 'GET':
-        queryset = Story.objects.all().filter(sold=False)
-        print(request.GET)
+        queryset = Story.objects.all().order_by('sold')
         storyId = request.GET.get('id', None)
         if storyId is not None:
             queryset = Story.objects.all().filter(sold=False, storyId="".join(storyId))
